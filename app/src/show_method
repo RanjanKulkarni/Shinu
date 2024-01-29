@@ -1,0 +1,32 @@
+public void showww() {
+    try {
+      Class.forName("oracle.jdbc.driver.OracleDriver");
+
+      String URL = "jdbc:oracle:thin:@localhost:1521:XE";
+      String USER = "system";
+      String PASS = "system@123";
+      Connection con = DriverManager.getConnection(URL, USER, PASS);
+
+      Statement st = con.createStatement();
+      ResultSet rs = st.executeQuery("select * from emp");
+
+      if (i >= 1) {
+        j = 1; // Reset the counter
+        while (rs.next()) {
+          l1.setText(rs.getString(j));
+          j++;
+          break;
+        }
+      }
+      System.out.println("Checking data");
+
+      rs.close();
+      st.close();
+      con.close();
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
+    } catch (ClassNotFoundException e) {
+      System.out.println(e.getMessage());
+    }
+
+  }
